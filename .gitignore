@@ -7,3 +7,9 @@
 
 # Claude Code 로컬 설정
 .claude/
+
+# 저장소에서 뺀 작업본 (로컬에만 보관)
+Animal Shelter Analytics.ipynb
+Animal_Shelter_Analytics_updated.ipynb
+Animal_Shelter_Analytics_v2.ipynb
+/*.png

@@ -23,14 +23,12 @@
 |---|---|
 | `컨퍼런스2조 발표자료.pdf` | **컨퍼런스 발표자료 (최종 결과)** |
 | `Animal_Shelter_Analytics_Final.ipynb` | 발표 기준 분석 노트북 (전처리 → EDA → 2단계 vs 직접 모델 비교 → 불균형 처리) |
-| `Animal_Shelter_Analytics_v2.ipynb` | 발표 후 개선판: 병합 개선, 변수 선택 실험, SHAP, 시간 기준 검증 |
 | `Animal_Shelter_v2_노트북_설명보고서.pdf`, `Animal_Shelter_프로젝트_분석보고서.pdf` | 노트북 설명·분석 보고서 |
-| `Animal Shelter Analytics.ipynb`, `Animal_Shelter_Analytics_updated.ipynb` | 초기 작업본 (기록용) |
 | `2조_기획서_코멘트.docx` | 기획서와 지도 코멘트 |
-| `figures_v2/`, `*.png` | 분석 그림 |
+| `figures_v2/` | 발표 후 개선 분석 그림 |
 
 ## 후속 연구
-v2에서 찾은 평가 설계 문제(무작위 분할, 결과 확정 후 기록 누수)를 이어서 단독 논문
+발표 후 개선 작업에서 찾은 평가 설계 문제(무작위 분할, 결과 확정 후 기록 누수)를 이어서 단독 논문
 「동물보호소 안락사 예측의 평가 설계 재검토」로 발전시켰습니다 →
 [contest-portfolio / 논문](https://github.com/j2tori-design/contest-portfolio/tree/main/논문/최종자료)
 
