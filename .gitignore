@@ -1,0 +1,9 @@
+# 데이터 파일 (용량 큼 / 원본은 별도 보관)
+*.csv
+*.zip
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Claude Code 로컬 설정
+.claude/
