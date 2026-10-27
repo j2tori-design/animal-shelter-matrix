@@ -1,0 +1,38 @@
+# 보호소 운영 우선순위를 위한 2단계 예측
+
+**교내 AI 학회 MATRIX 컨퍼런스 2조 · 팀 조장 · 2026.07–08 · 참가 10팀 중 최우수상**
+
+오스틴 동물센터 입·퇴소 기록으로, 보호소가 **어떤 동물에게 먼저 개입해야 하는지** 정하는 우선순위 점수를 만든 프로젝트입니다.
+
+## 문제 정의
+- 5개 퇴소 결과(입양·반환·이송·안락사·기타)를 그대로 다중분류하면 소수 클래스 구분이 어려움(기타 F1 0.13)
+- 그래서 목적별 이진 문제 2개로 재정의
+  1. **입양 모델**: 입양 여부 (전체 개체)
+  2. **안락사 위험 모델**: 비입양군 안의 안락사 여부
+- 두 예측을 결합한 개입 우선순위: `우선순위 = (1 − P(입양)) × P(안락사 | 비입양)`
+
+## 주요 내용
+- 품종 2,619종·색상 594종을 상위 15개 그룹 + 혼종·단색·다색 상위범주로 파생, 이름 유무(`has_name`)·생애단계 변수 생성
+- Logistic Regression · Random Forest · LightGBM 비교, Animal ID 그룹 분할로 검증
+- **입양 모델 (LightGBM)**: 실제 비입양 개체의 69.2%를 사전 식별, 비입양 예측 중 79.7%가 실제 비입양
+- **안락사 위험 모델 (비입양군 LightGBM)**: Recall 0.817 · PR-AUC 0.777 (직접 모델 0.819 · 0.746 대비 순위화 성능 우위)
+- 정확도 대신 소수 클래스 지표(Recall·PR-AUC)를 기준으로 미탐지 비용을 고려해 최종 모델 선정
+
+## 파일 구성
+| 파일 | 내용 |
+|---|---|
+| `컨퍼런스2조 발표자료.pdf` | **컨퍼런스 발표자료 (최종 결과)** |
+| `Animal_Shelter_Analytics_Final.ipynb` | 발표 기준 분석 노트북 (전처리 → EDA → 2단계 vs 직접 모델 비교 → 불균형 처리) |
+| `Animal_Shelter_Analytics_v2.ipynb` | 발표 후 개선판: 병합 개선, 변수 선택 실험, SHAP, 시간 기준 검증 |
+| `Animal_Shelter_v2_노트북_설명보고서.pdf`, `Animal_Shelter_프로젝트_분석보고서.pdf` | 노트북 설명·분석 보고서 |
+| `Animal Shelter Analytics.ipynb`, `Animal_Shelter_Analytics_updated.ipynb` | 초기 작업본 (기록용) |
+| `2조_기획서_코멘트.docx` | 기획서와 지도 코멘트 |
+| `figures_v2/`, `*.png` | 분석 그림 |
+
+## 후속 연구
+v2에서 찾은 평가 설계 문제(무작위 분할, 결과 확정 후 기록 누수)를 이어서 단독 논문
+「동물보호소 안락사 예측의 평가 설계 재검토」로 발전시켰습니다 →
+[contest-portfolio / 논문](https://github.com/j2tori-design/contest-portfolio/tree/main/논문/최종자료)
+
+## 데이터
+Austin Animal Center Intakes / Outcomes (City of Austin Open Data Portal). 용량 문제로 저장소에는 포함하지 않았습니다.
